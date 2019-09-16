@@ -4,7 +4,8 @@ augroup vimwiki
     endif
 
     if !exists('g:vimwiki_dir')
-        let g:vimwiki_dir = VimwikiGet('path',g:vimwiki_current_idx) 
+        "let g:vimwiki_dir = VimwikiGet('path',g:vimwiki_current_idx) 
+        let g:vimwiki_dir = vimwiki#vars#get_wikilocal('path')
     endif
 
     if !exists('g:vimwiki_push_on_commit')
@@ -22,7 +23,7 @@ augroup vimwiki
     function! s:pull_changes()
         if g:vimwiki_synced==0
             let l:command = "git -C " . g:vimwiki_dir_expanded . " pull origin master"
-            let jobid = jobstart(l:command, {'on_exit': function('s:pull_exit')})
+            let jobid = job_start(l:command, {'on_exit': function('s:pull_exit')})
         endif
     endfunction
 
@@ -35,7 +36,7 @@ augroup vimwiki
     " fixed
     function! s:push_changes()
         let l:command = "git -C " . g:vimwiki_dir_expanded . " push origin master"
-        let jobid = jobstart(l:command, {'on_exit': function('s:push_exit')})
+        let jobid = job_start(l:command, {'on_exit': function('s:push_exit')})
     endfunction
 
     function! s:commit_exit(job_id, data, event) dict
@@ -48,7 +49,7 @@ augroup vimwiki
     " commit chages to server
     function! s:commit_changes()
         let l:command = "/usr/bin/git add " . g:vimwiki_dir_expanded . " && /usr/bin/git -C " . g:vimwiki_dir_expanded . " commit -m \"Auto commit " . strftime("%FT%T%z") . "\""
-        let jobid = jobstart(l:command, {'on_exit': function('s:commit_exit')})
+        let jobid = job_start(l:command, {'on_exit': function('s:commit_exit')})
     endfunction
 
     " sync changes at the start
