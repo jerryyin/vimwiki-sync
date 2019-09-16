@@ -35,8 +35,10 @@ augroup vimwiki
     " it seems that Vim terminates before it is executed, so it needs to be
     " fixed
     function! s:push_changes()
-        let l:command = "git -C " . g:vimwiki_dir_expanded . " push origin master"
-        let jobid = system(l:command)
+        let l:command1 = "git -C " . g:vimwiki_dir_expanded . " push origin master"
+        call system(l:command1)
+        let l:command2 = "git -C " . g:vimwiki_dir_expanded . " push gitlab master"
+        call system(l:command2)
     endfunction
 
     function! s:commit_exit(ch, msg)
@@ -57,8 +59,9 @@ augroup vimwiki
 
     " commit chages to server
     function! s:commit_changes()
-        let l:command = "pwd && /usr/bin/git -C " . g:vimwiki_dir_expanded . " add " . g:vimwiki_dir_expanded . " && /usr/bin/git -C " . g:vimwiki_dir_expanded . " commit -m \"Auto commit " . strftime("%FT%T%z") . "\""
-        let jobid = job_start(['/usr/bin/git', '-C', g:vimwiki_dir_expanded, 'add', g:vimwiki_dir_expanded], {'callback': 's:add_exit'})
+        let l:command = "/usr/bin/git -C " . g:vimwiki_dir_expanded . " add " . g:vimwiki_dir_expanded . " && /usr/bin/git -C " . g:vimwiki_dir_expanded . " commit -m \"Auto commit " . strftime("%FT%T%z") . "\""
+        "let jobid = job_start(['/usr/bin/git', '-C', g:vimwiki_dir_expanded, 'add', g:vimwiki_dir_expanded], {'callback': 's:add_exit'})
+        call system(l:command)
     endfunction
 
     " sync changes at the start
