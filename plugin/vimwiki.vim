@@ -65,11 +65,11 @@ augroup vimwiki
     endfunction
 
     " sync changes at the start
-    au! VimEnter /home/yshimmyo/vimwiki/*.md call s:pull_changes()
-    au! BufRead /home/yshimmyo/vimwiki/*.md call s:pull_changes()
+    au! VimEnter /home/yshimmyo/vimwiki/*.wiki call s:pull_changes()
+    au! BufRead /home/yshimmyo/vimwiki/*.wiki call s:pull_changes()
     " auto commit changes on each file change
     au! BufWritePost /home/yshimmyo/vimwiki/*.wiki call s:commit_changes()
     " push changes only on at the end
-    au! BufLeave /home/yshimmyo/vimwiki/*.md call s:push_changes()
-    au! VimLeave /home/yshimmyo/vimwiki/*.md call s:push_changes()
+    au! BufLeave /home/yshimmyo/vimwiki/*.wiki call s:push_changes()
+    au! VimLeave /home/yshimmyo/vimwiki/*.wiki call s:push_changes()
 augroup END
