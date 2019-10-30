@@ -1,9 +1,18 @@
 vimwiki-sync
 ============
 
-This is an extended version of [vimwiki-sync](#), with better support for `git`.
+This is a fork of [vimwiki-sync](https://github.com/RollMan/vimwiki-sync/), the
+original plugin *automatically* synchronised Vimwiki notes into a local git
+repository, with all changed files being automatically committed. This fork
+provides several improvements. These include:
 
-This plugin:
+* improved handling of modified files
+* fully handle all supported (configured) extension and wiki paths
+* refactored vimscript
 
- - automatically synchronize Vimwiki notes directory on Vimwiki startup and exit using Git.
- - changed files are auto-committed.
+ToDo
+----
+
+* better support for `git` (_thinking of using fugitive_)
+* asynchronous operations (at the moment there is lag)
+* test-suite...
