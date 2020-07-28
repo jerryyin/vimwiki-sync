@@ -26,7 +26,7 @@ endfunction
 
 function! s:pull_changes(path) abort
   if s:vimwiki_synced == 0
-    let l:cmdmsg = system ("git -C " . a:path . " pull origin master")
+    let l:cmdmsg = system ("git -C " . a:path . " pull --rebase origin master")
     if v:shell_error
       echo "Unable to pull latest commits, error msg: " . l:cmdmsg
     else
@@ -93,7 +93,7 @@ function! s:vimwiki_get_paths_and_extensions()
   endfor
   " combine exts and paths
   for key in keys(wikis)
-    let wikis[ext] = keys(paths)
+    let wikis[key] = keys(paths)
   endfor
   return wikis
 endfunction
