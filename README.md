@@ -19,14 +19,14 @@ provides several improvements. These include:
 
 gstatus=`git status --porcelain`
 
+# chdir to the directory of the script
+cd "$(dirname "${BASH_SOURCE[0]}")
+
 if [ ${#gstatus} -ne 0 ]
 then
-
     git add --all
-    git commit -m "$gstatus"
-
-	git pull
+    git commit -m "Auto update: $gstatus"
+    git pull --rebase
     git push
- 
 fi
 ```
