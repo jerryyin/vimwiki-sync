@@ -19,7 +19,7 @@ provides several improvements. These include:
 gstatus=`git status --porcelain`
 
 # chdir to the directory of the script
-cd "$(dirname "${BASH_SOURCE[0]}")
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 if [ ${#gstatus} -ne 0 ]
 then
