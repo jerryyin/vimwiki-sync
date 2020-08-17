@@ -1,31 +1,11 @@
 vimwiki-sync
 ============
 
-This is a fork of [vimwiki-sync](https://github.com/RollMan/vimwiki-sync/), the
-original plugin *automatically* synchronised Vimwiki notes into a local git
-repository, with all changed files being automatically committed. This fork
-provides several improvements. These include:
+This is a fork of [vimwiki-sync](https://github.com/jerryyin/vimwiki-sync)
+without external dependencies. 
 
-* Fully handle all supported (configured) extension and wiki paths
-* Refactored vimscript
-* Asynchronous operations (depends on [vim-dispatch](https://github.com/tpope/vim-dispatch), and your personal `sync.sh` in notes directory)
-  
-  
-### A sample of `sync.sh`
+## Install
 
-```bash
-#!/bin/bash
+Add `Plug 'icalvin102/vimwiki-sync'` to your .vimrc
 
-gstatus=`git status --porcelain`
-
-# chdir to the directory of the script
-cd "$(dirname "${BASH_SOURCE[0]}")
-
-if [ ${#gstatus} -ne 0 ]
-then
-    git add --all
-    git commit -m "Auto update: $gstatus"
-    git pull --rebase
-    git push
-fi
-```
+Run `:PlugInstall`
